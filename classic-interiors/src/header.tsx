@@ -1,32 +1,60 @@
 import React from 'react';
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
-
+import { FaSearch } from 'react-icons/fa';
 
 const Header: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
      const [showMenu, setShowMenu] = useState(false);
+     useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY > 30) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
+  
+
      return (
-       <header className="fixed top-0 left-0 bg-white shadow-md z-10 w-full">
+       <header className={`fixed w-full z-10 transition-colors duration-300 ${isScrolled ? 'bg-customGold' : 'bg-transparent'}`}>
          <div className=" mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
            <div className="flex items-center">
              <img src="./img5.jpg" alt="logo" className="h-12 rounded-md" />
            </div>
-           <nav className="hidden sm:flex space-x-8 items-center text-md ">
+           <nav className="hidden sm:flex space-x-8 items-center text-xl">
              <a href="#home">Home</a>
-             <a href="#collections">Collections</a>
-             <a href="#about">About Us</a>
-             <a href="#testimonial">Testimonials</a>
+             <a href="#catalogue">Catalogue</a>
+             <a href="#blog">Blog Post</a>
              <a href="#contact">Contact</a>
-             <button className="px-3 py-2 bg-gray-200 rounded-md hover:bg-gray-500">
+             </nav>
+             <div className=' flex items-center space-x-5'>
+            <form className="max-w-md mx-auto">   
+          <div className="relative">
+          <div className="absolute inset-y-0 start-0 flex items-center p-5 pointer-events-none">
+           <FaSearch className='w-4 h-4' />
+        </div>
+        <input type="search" id="default-search" className="block w-full px-12 py-4 text-sm text-black border border-gray-300 rounded-3xl  bg-gray-50 focus:outline-none " placeholder="Search Products" required />
+        <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-green-600 hover:bg-green-800  focus:outline-none  font-medium rounded-xl text-sm px-4 py-2 ">Search</button>
+    </div>
+    </form>
+    <button className=" hidden sm:flex px-3 py-2 bg-green-600 hover:bg-green-800 rounded-md">
                <a
                  href="#"
-                 className="inline-flex items-center justify-center  text-base font-medium text-center  hover:text-white "
+                 className=" inline-flex items-center justify-center  text-base font-medium text-center  hover:text-white "
                >
                  Shop Now
                </a>
-             </button>
-           </nav>
+             </button> 
+           </div>
+           
            <button
              className="block sm:hidden ml-4"
              aria-label="Toggle Menu"
@@ -62,25 +90,18 @@ const Header: React.FC = () => {
                Home
              </a>
              <a
-               href="#collections"
+               href="#catalogue"
                className="text-lg font-medium"
                onClick={() => setShowMenu(false)}
              >
-               Collections
+               Catalogue
              </a>
              <a
-               href="#about"
+               href="#blog"
                className="text-lg font-medium"
                onClick={() => setShowMenu(false)}
              >
-               About Us
-             </a>
-             <a
-               href="#testimonials"
-               className="text-lg font-medium"
-               onClick={() => setShowMenu(false)}
-             >
-               Testimonials
+               Blog Post
              </a>
              <a
                href="#contact"
@@ -89,7 +110,7 @@ const Header: React.FC = () => {
              >
                Contact
              </a>
-             <button className="px-3 py-2 bg-gray-200 hover:bg-gray-500 rounded-md">
+             <button className="px-3 py-2 bg-green-600 hover:bg-green-800 rounded-md">
                <a
                  href="#"
                  className="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-black rounded-lg hover:text-white"

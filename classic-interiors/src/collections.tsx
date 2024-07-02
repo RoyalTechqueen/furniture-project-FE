@@ -1,86 +1,96 @@
-import React from "react";
+import React from 'react';
+import { useState, useEffect} from "react";
 
-const Collections: React.FC = () => {
-    return (
-      <section id="collections" className="bg-gray-300 py-12">
-        <div className="mx-auto">
-          <h1 className="font-bold text-center mb-5 text-4xl">
-            Explore Our Collections
-          </h1>
-          <div className="absolute inset-0 bg-black opacity-20"></div>
-          <div className="grid grid-cols-1 md:grid-cols-2 1g:grid-cols-2 gap-8 px-5 py-5">
-            <div className="shadow-md bg-gray-100 rounded-1g">
-              <img
-                src="./img5.jpg"
-                alt=""
-                className="w-full h-auto rounded-t-1g"
-              />
-              <div className="p-6">
-                <h3 className="text-xl mb-4 font-semi-bold text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </h3>
-                <div className="flex justify-center items-center">
-                  <button className="px-3 py-2 bg-gray-300 hover:bg-gray-500 rounded-md hover:text-white">
-                    Learn More
-                  </button>
-                </div>
-              </div>
+const imageUrls: string[] = [
+  'img1.jpg',
+  'img2.jpg',
+  'img3.jpg',
+];
+
+const CollectionPage: React.FC = () => {
+  const [imageIndex, setImageIndex] = useState<number>(0);
+  const [imageUrl, setImageUrl] = useState<string>(imageUrls[imageIndex]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newIndex: number = (imageIndex + 1) % imageUrls.length;
+      setImageIndex(newIndex);
+      setImageUrl(imageUrls[newIndex]);
+    }, 3000); // Change image every 1 second
+
+    return () => clearInterval(interval);
+  }, [imageIndex]);
+
+
+  return (
+    <div className="grid grid-rows-3 grid-cols-2 gap-4 p-8">
+      {/* First Card */}
+      <div className="col-span-1">
+        <div className="p-4 border border-gray-300 bg-customGold">
+          <div className="flex">
+            <div className="w-1/2">
+              <img src="img1.jpg" alt="Image 1" className="w-full h-auto" />
             </div>
-            <div className="shadow-md bg-gray-100 rounded-1g">
-              <img
-                src="./img5.jpg"
-                alt=""
-                className="w-full h-auto rounded-t-1g"
-              />
-              <div className="p-6">
-                <h3 className="text-xl mb-4 font-semi-bold text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </h3>
-                <div className="flex justify-center items-center">
-                  <button className="px-3 py-2 bg-gray-300 hover:bg-gray-500 rounded-md hover:text-whited hover:text-white">
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="shadow-md bg-gray-100 rounded-1g">
-              <img
-                src="./img5.jpg"
-                alt=""
-                className="w-full h-auto rounded-t-1g"
-              />
-              <div className="p-6">
-                <h3 className="text-xl mb-4 font-semi-bold text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </h3>
-                <div className="flex justify-center items-center">
-                  <button className="px-3 py-2 bg-gray-300 hover:bg-gray-500 rounded-md hover:text-white hover:text-white">
-                    Learn More
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="shadow-md bg-gray-100 rounded-1g">
-              <img
-                src="./img5.jpg"
-                alt=""
-                className="w-full h-auto rounded-t-1g"
-              />
-              <div className="p-6">
-                <h3 className="text-xl mb-4 font-semi-bold text-center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </h3>
-                <div className="flex justify-center items-center">
-                  <button className="px-3 py-2 bg-gray-300 hover:bg-gray-500 rounded-md hover:text-white hover:text-white">
-                    Learn More
-                  </button>
-                </div>
-              </div>
+            <div className="w-1/2 p-4">
+              <h2 className="text-lg font-bold">Title 1</h2>
+              <p className="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             </div>
           </div>
         </div>
-      </section>
-    );
+      </div>
+
+      {/* Second Card */}
+      <div className="col-span-1">
+        <div className="p-4 border border-gray-300 bg-customGold">
+          <div className="flex">
+            <div className="w-1/2 ">
+              <img src="img1.jpg" alt="Image 2" className="w-full h-auto" />
+            </div>
+            <div className="w-1/2 order-1 p-4">
+              <h2 className="text-lg font-bold">Title 2</h2>
+              <p className="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Third Card (Span 2 columns) */}
+      <div className="row-span-2">
+        <div className=" border border-gray-300 bg-customGold h-full">
+        <img src={imageUrl} alt="Slideshow" className='w-auto h-full' />
+          </div>
+      </div>
+
+      {/* Fourth Card */}
+      <div className="col-span-1">
+        <div className="p-4 border border-gray-300 bg-customGold">
+          <div className="flex">
+            <div className="w-1/2 order-2">
+              <img src="img1.jpg" alt="Image 2" className="w-full h-auto" />
+            </div>
+            <div className="w-1/2 order-1 p-4">
+              <h2 className="text-lg font-bold">Title 4</h2>
+              <p className="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Fifth Card */}
+      <div className="col-span-1">
+        <div className="p-4 border border-gray-300 bg-customGold">
+          <div className="flex">
+            <div className="w-1/2">
+              <img src="img1.jpg" alt="Image 2" className="w-full h-auto" />
+            </div>
+            <div className="w-1/2 order-1 p-4">
+              <h2 className="text-lg font-bold">Title 5</h2>
+              <p className="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+          </div>
+        </div>
+      </div>     
+    </div>
+  );
 };
 
-export default Collections;
+export default CollectionPage;
