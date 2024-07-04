@@ -4,6 +4,7 @@ export default {
     extend: {
       colors: {
         customGold: '#aa9c79',
+        customYellow: '#f1dbaa',
       }
     },
   },

@@ -24,7 +24,7 @@ const Header: React.FC = () => {
   
 
      return (
-       <header className={`fixed w-full z-10 transition-colors duration-300 ${isScrolled ? 'bg-customGold' : 'bg-transparent'}`}>
+       <header className={`fixed w-full z-10 transition-colors duration-300 ${isScrolled ? 'bg-customYellow' : 'bg-transparent'}`}>
          <div className=" mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
            <div className="flex items-center">
              <img src="./img5.jpg" alt="logo" className="h-12 rounded-md" />
@@ -41,8 +41,8 @@ const Header: React.FC = () => {
           <div className="absolute inset-y-0 start-0 flex items-center p-5 pointer-events-none">
            <FaSearch className='w-4 h-4' />
         </div>
-        <input type="search" id="default-search" className="block w-full px-12 py-4 text-sm text-black border border-gray-300 rounded-3xl  bg-gray-50 focus:outline-none " placeholder="Search Products" required />
-        <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-green-600 hover:bg-green-800  focus:outline-none  font-medium rounded-xl text-sm px-4 py-2 ">Search</button>
+        <input type="search" id="default-search" className="block w-full px-12 py-2 text-sm text-black border border-gray-300 rounded-3xl  bg-gray-50 focus:outline-none " placeholder="Search Products" required />
+        <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-green-600 hover:bg-green-800  focus:outline-none  font-medium rounded-xl text-sm px-4 py-1/2 ">Search</button>
     </div>
     </form>
     <button className=" hidden sm:flex px-3 py-2 bg-green-600 hover:bg-green-800 rounded-md">
