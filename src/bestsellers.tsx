@@ -21,7 +21,7 @@ const bestSellers: Product[] = [
     title: "furniture1",
     price: 45000,
     reviews: 66,
-    image: "/public/living/liv2.jpg",
+    image: "/living/liv2.jpg",
     description: "traditionally beautiful",
   },
   {
@@ -29,7 +29,7 @@ const bestSellers: Product[] = [
     title: "Furniture2",
     price: 65000,
     reviews: 28,
-    image: "/public/living/liv2.jpg",
+    image: "/living/liv2.jpg",
     description: "traditionally beautiful",
   },
   {
@@ -37,7 +37,7 @@ const bestSellers: Product[] = [
     title: "furniture3",
     price: 97000,
     reviews: 41,
-    image: "/public/living/liv2.jpg",
+    image: "/living/liv2.jpg",
     description: "traditionally beautiful",
   },
   {
@@ -45,7 +45,7 @@ const bestSellers: Product[] = [
     title: "Furniture4",
     price: 78000,
     reviews: 31,
-    image: "/public/living/liv2.jpg",
+    image: "/living/liv2.jpg",
     description: "traditionally beautiful",
   },
   {
@@ -53,7 +53,7 @@ const bestSellers: Product[] = [
     title: "Furniture5",
     price: 108000,
     reviews: 50,
-    image: "/public/living/liv2.jpg",
+    image: "/living/liv2.jpg",
     description: "traditionally beautiful",
   },
 ];
