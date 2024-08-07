@@ -19,6 +19,9 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li className="mb-2">
+                <Link to="/shop">Shop Now</Link>
+              </li>
+              <li className="mb-2">
                 <a href="#contact" className="hover:underline">
                   Contact Us
                 </a>

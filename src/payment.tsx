@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useCartStore } from "./store";
-import Footer from "./footer";
+import Header from "./header";
 
 const Payment = () => {
   const [showModal, setShowModal] = useState(false);
@@ -31,8 +31,9 @@ const Payment = () => {
 
   return (
     <div className="bg-green-50 min-h-screen flex flex-col justify-between">
-      <div className="p-4 mt-24">
-        <div className="flex flex-row items-center gap-2 mb-4">
+      <Header />
+      <div className="p-4">
+        <div className="flex flex-row items-center gap-2 mt-24 mb-4">
           <FaArrowLeft onClick={() => navigate("/checkout")} />
           <p>Back</p>
         </div>
@@ -118,7 +119,6 @@ const Payment = () => {
           </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };

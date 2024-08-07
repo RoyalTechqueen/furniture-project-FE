@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
 
 const blogArticles = [
   {
@@ -60,16 +62,77 @@ const blogArticles = [
 ];
 
 const BlogPage: React.FC = () => {
+  const [showMenu, setShowMenu] = useState(false);
   return (
-    <div className="bg-gray-50 py-16">
-      <div className="flex items-center gap-4 mt-12 mb-4">
-        <button className="flex items-center text-gray-700">
-          <Link to="/">
-            <FaArrowLeft className="mr-2" />
-          </Link>
+    <div className="container mx-auto bg-green-50 min-h-screen">
+      <header className="w-full z-10 transition-colors duration-300 bg-white">
+        <div className="mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
+          <div className="flex items-center">
+            <img src="/logo2.png" alt="logo" className="h-16 rounded-xl" />
+          </div>
+          <nav className="hidden sm:flex space-x-8 items-center mr-8 text-xl">
+            <Link to="/">Home</Link>
+            <Link to="/shop">Shop</Link>
+            <Link to="/about">About</Link>
+          </nav>
+          <button
+            className="block sm:hidden ml-4"
+            aria-label="Toggle Menu"
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            {showMenu ? (
+              <IoMdClose className="text-2xl" />
+            ) : (
+              <HiOutlineMenuAlt3 className="text-2xl" />
+            )}
+          </button>
+        </div>
+        <div
+          className={`fixed top-0 left-0 h-full w-full bg-white shadow-lg transform ${
+            showMenu ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 ease-in-out sm:hidden`}
+        >
+          <div className="flex justify-end p-4">
+            <button
+              className="text-2xl"
+              aria-label="Close Menu"
+              onClick={() => setShowMenu(false)}
+            >
+              <IoMdClose />
+            </button>
+          </div>
+          <nav className="flex flex-col items-center space-y-6 p-6">
+            <img src="/logo2.png" alt="logo" className="h-20 mb-4" />
+            <Link
+              to="/"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              Home
+            </Link>
+            <Link
+              to="/shop"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              Shop
+            </Link>
+            <Link
+              to="/about"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              About
+            </Link>
+          </nav>
+        </div>
+      </header>
+      <Link to="/">
+        <button className="flex items-center ml-4 text-gray-700">
+          <FaArrowLeft className="mr-2" />
           <span>Back</span>
         </button>
-      </div>
+      </Link>
       <div className="container mx-auto px-6">
         <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
           All Blog Articles

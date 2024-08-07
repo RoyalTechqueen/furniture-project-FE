@@ -1,9 +1,9 @@
 import React from "react";
-import Footer from "./footer";
 import { useCartStore } from "./store";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Delivery from "./delivery";
+import Header from "./header";
 
 const Checkout: React.FC = () => {
   const formatPrice = (price: number) => {
@@ -19,9 +19,10 @@ const Checkout: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="container mx-auto bg-green-50">
-      <div className="p-4 mt-24">
-        <div className="flex flex-row items-center gap-2 mb-4">
+    <div className="container mx-auto bg-green-50 min-h-screen">
+      <Header />
+      <div className="p-4">
+        <div className="flex flex-row mt-24 items-center gap-2 mb-4">
           <FaArrowLeft onClick={() => navigate("/cart")} />
           <p>Back</p>
         </div>
@@ -67,7 +68,6 @@ const Checkout: React.FC = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

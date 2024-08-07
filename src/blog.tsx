@@ -45,7 +45,7 @@ const articles = [
 
 const BlogSection: React.FC = () => {
   return (
-    <section className="p-2 md:p-12" id="blog">
+    <section className="scroll-mt-24 py-16" id="blog">
       <div className="container mx-auto px-6">
         <div className="mb-8 flex justify-between items-center">
           <h2 className="text-3xl text-center font-semibold text-gray-900">

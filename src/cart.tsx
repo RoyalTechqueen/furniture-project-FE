@@ -3,7 +3,6 @@ import { useCartStore } from "./store";
 import { Link } from "react-router-dom";
 import { FaRegTrashAlt, FaArrowLeft } from "react-icons/fa";
 import Header from "./header";
-import Footer from "./footer";
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat("en-US", {
@@ -38,12 +37,31 @@ const Cart: React.FC = () => {
             <span>Back</span>
           </button>
         </div>
-        <div className="flex flex-col md:flex-row  lg:flex-row gap-8">
-          <div className="md:w-2/3 bg-green-50 p-6 shadow-md rounded-lg">
-            {cart.length === 0 ? (
-              <p>Your cart is empty.</p>
-            ) : (
-              cart.map((item) => (
+        {cart.length === 0 ? (
+          <div className="flex flex-col items-center">
+            <img
+              src="/empty cart.png"
+              alt="Empty Cart"
+              className="w-72 h-48 object-contain"
+            />
+            <p className="text-xl font-semibold mt-4">
+              Your Cart Is Currently Empty!
+            </p>
+            <p className=" mb-4 text-center text-lg">
+              Your journey to a beautifully styled home starts here.{" "}
+              <br className="hidden sm:flex" /> Click{" "}
+              <Link to="/" className=" font-semibold text-green-500 underline">
+                here
+              </Link>{" "}
+              to explore our curated collection of furniture and decor{" "}
+              <br className="hidden sm:flex" /> to find pieces that inspire
+              elegance and comfort in every room.
+            </p>
+          </div>
+        ) : (
+          <div className="flex flex-col md:flex-row  lg:flex-row gap-8">
+            <div className="md:w-2/3 bg-green-50 p-6 shadow-md rounded-lg">
+              {cart.map((item) => (
                 <div
                   key={item.id}
                   className="flex flex-col md:flex-row lg:flex-row items-start md:items-center mb-4 border-b pb-4"
@@ -84,41 +102,40 @@ const Cart: React.FC = () => {
                     {formatPrice(item.price)}
                   </div>
                 </div>
-              ))
-            )}
-          </div>
-          <div className="md:w-1/3 bg-green-50 p-6 shadow-md rounded-lg">
-            <h2 className="text-xl font-bold mb-4">Order Summary</h2>
-            {cart.length > 0 && (
-              <>
-                {cart.map((item) => (
-                  <div key={item.id} className="flex justify-between mb-2">
-                    <span>{item.title}</span>
-                    <span>
-                      {item.quantity} x {formatPrice(item.price)}
-                    </span>
+              ))}
+            </div>
+            <div className="md:w-1/3 bg-green-50 p-6 shadow-md rounded-lg">
+              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+              {cart.length > 0 && (
+                <>
+                  {cart.map((item) => (
+                    <div key={item.id} className="flex justify-between mb-2">
+                      <span>{item.title}</span>
+                      <span>
+                        {item.quantity} x {formatPrice(item.price)}
+                      </span>
+                    </div>
+                  ))}
+                  <hr className="my-4" />
+                  <div className="flex justify-between font-bold mb-4">
+                    <span>Order Total</span>
+                    <span>{formatPrice(total)}</span>
                   </div>
-                ))}
-                <hr className="my-4" />
-                <div className="flex justify-between font-bold mb-4">
-                  <span>Order Total</span>
-                  <span>{formatPrice(total)}</span>
-                </div>
-                <button className="w-full bg-green-500 text-white p-2 rounded-lg mb-4">
-                  <Link to="/checkout">Proceed to Checkout</Link>
-                </button>
-                <button
-                  className="text-red-500 underline text-left w-full"
-                  onClick={clearCart}
-                >
-                  Clear Cart
-                </button>
-              </>
-            )}
+                  <button className="w-full bg-green-500 text-white p-2 rounded-lg mb-4">
+                    <Link to="/checkout">Proceed to Checkout</Link>
+                  </button>
+                  <button
+                    className="text-red-500 underline text-left w-full"
+                    onClick={clearCart}
+                  >
+                    Clear Cart
+                  </button>
+                </>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
-      <Footer />
     </div>
   );
 };

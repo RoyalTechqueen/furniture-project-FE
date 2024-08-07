@@ -1,21 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Footer from "./footer";
 import { FaArrowLeft } from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
+import { useCartStore } from "./store";
 
 const AboutPage: React.FC = () => {
+  const [showMenu, setShowMenu] = useState(false);
+  const { getCartItemCount } = useCartStore((state) => ({
+    getCartItemCount: state.getCartItemCount,
+  }));
+
+  const cartItemCount = getCartItemCount();
+
   return (
-    <div className="bg-green-50">
-      <div className="container mx-auto px-6 text-center mt-28">
-        <div className="flex items-center gap-4 mt-4 mb-4">
-          <button className="flex items-center text-gray-700">
-            <Link to="/">
-              <FaArrowLeft className="mr-2" />
+    <div className="container mx-auto bg-green-50 min-h-screen">
+      <header className="w-full z-10 transition-colors duration-300 bg-white">
+        <div className="mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
+          <div className="flex items-center">
+            <img src="/logo2.png" alt="logo" className="h-16 rounded-xl" />
+          </div>
+          <nav className="hidden sm:flex space-x-8 items-center mr-8 text-xl">
+            <Link to="/">Home</Link>
+            <Link to="/shop">Shop</Link>
+            <Link to="/about">About</Link>
+          </nav>
+          <div className="flex items-center relative">
+            <Link to="/cart">
+              <IoCartOutline className="w-8 h-8 text-green-600 ml-48" />
+              {cartItemCount > 0 && (
+                <span className="absolute -top-2 -end-2 bg-yellow-500 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
             </Link>
-            <span>Back</span>
+          </div>
+          <button
+            className="block sm:hidden ml-4"
+            aria-label="Toggle Menu"
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            {showMenu ? (
+              <IoMdClose className="text-2xl" />
+            ) : (
+              <HiOutlineMenuAlt3 className="text-2xl" />
+            )}
           </button>
         </div>
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <div
+          className={`fixed top-0 left-0 h-full w-full bg-white shadow-lg transform ${
+            showMenu ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 ease-in-out sm:hidden`}
+        >
+          <div className="flex justify-end p-4">
+            <button
+              className="text-2xl"
+              aria-label="Close Menu"
+              onClick={() => setShowMenu(false)}
+            >
+              <IoMdClose />
+            </button>
+          </div>
+          <nav className="flex flex-col items-center space-y-6 p-6">
+            <img src="/logo2.png" alt="logo" className="h-20 mb-4" />
+            <Link
+              to="/"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              Home
+            </Link>
+            <Link
+              to="/shop"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              Shop
+            </Link>
+            <Link
+              to="/about"
+              className="text-lg font-medium"
+              onClick={() => setShowMenu(false)}
+            >
+              About
+            </Link>
+          </nav>
+        </div>
+      </header>
+      <Link to="/">
+        <button className="flex items-center ml-4 text-gray-700">
+          <FaArrowLeft className="mr-2" />
+          <span>Back</span>
+        </button>
+      </Link>
+
+      <div className="container mx-auto mt-4 px-6 text-center ">
+        <h1 className="text-4xl font-bold  text-gray-900 mb-4">
           About Classic Interiors
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -142,6 +224,24 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-semibold text-gray-900 mb-6">
+            Discover Our Collections
+          </h2>
+          <p className="text-lg text-gray-700 mb-8">
+            Explore our curated selection of furniture and decor, designed to
+            elevate your home with style and sophistication. Whether you're
+            looking for a statement piece or complete room transformation, we
+            have everything you need to create your dream home.
+          </p>
+          <Link to="/shop">
+            <button className="bg-green-600 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-green-700 transition duration-300">
+              Shop Now
+            </button>
+          </Link>
         </div>
       </section>
       <Footer />
