@@ -63,7 +63,8 @@ const FurnitureCard: React.FC<FurnitureCardProps> = ({
           </p>
           <button
             className="mt-2 bg-green-500 text-white px-4 py-2 rounded-full"
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               addToCart({
                 id: furniture.id,
                 title: furniture.title,

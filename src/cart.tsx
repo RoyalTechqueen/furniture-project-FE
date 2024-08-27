@@ -50,7 +50,10 @@ const Cart: React.FC = () => {
             <p className=" mb-4 text-center text-lg">
               Your journey to a beautifully styled home starts here.{" "}
               <br className="hidden sm:flex" /> Click{" "}
-              <Link to="/" className=" font-semibold text-green-500 underline">
+              <Link
+                to="/shop"
+                className=" font-semibold text-green-500 underline"
+              >
                 here
               </Link>{" "}
               to explore our curated collection of furniture and decor{" "}

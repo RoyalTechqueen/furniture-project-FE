@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Delivery: React.FC = () => {
   return (
     <div className="bg-green-50 p-6">
-      <form className="max-w-lg mx-auto border border-2 p-6">
+      <form className="max-w-lg mx-auto border border-2 rounded-md p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label

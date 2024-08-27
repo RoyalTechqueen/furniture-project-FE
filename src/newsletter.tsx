@@ -2,7 +2,7 @@ import React from "react";
 
 const NewsletterSection: React.FC = () => {
   return (
-    <div className="flex bg-gray-50  border border-input mt-8  border-gray-300 justify-center rounded-2xl py-20 mx-4 md:mx-12">
+    <div className="flex bg-gray-50  border border-input mt-8 mb-8 border-gray-300 justify-center rounded-2xl py-20 mx-4 md:mx-12">
       <div className="w-full px-2 md:max-w-3xl">
         <h2 className="text-xl font-semibold mb-4 text-center">
           Subscribe to Our Newsletter

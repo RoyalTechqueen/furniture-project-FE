@@ -1,5 +1,6 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
@@ -13,18 +14,13 @@ const Footer: React.FC = () => {
               <li className="mb-2">
                 <Link to="/about">About</Link>
               </li>
-              <li>
-                <a href="#blog" className="hover:underline">
-                  Blog
-                </a>
-              </li>
               <li className="mb-2">
                 <Link to="/shop">Shop Now</Link>
               </li>
               <li className="mb-2">
-                <a href="#contact" className="hover:underline">
+                <Link to="/contact" className="hover:underline">
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -54,25 +50,57 @@ const Footer: React.FC = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-xl font-bold mb-4">Follow Us</h3>
-            <div className="flex space-x-4">
-              <a href="#" aria-label="Facebook" className="hover:text-gray-400">
-                <FaFacebook size={24} />
-              </a>
-              <a href="#" aria-label="Twitter" className="hover:text-gray-400">
-                <FaTwitter size={24} />
-              </a>
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="hover:text-gray-400"
-              >
-                <FaInstagram size={24} />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="hover:text-gray-400">
-                <FaLinkedin size={24} />
-              </a>
-            </div>
+            <h3 className="text-xl font-bold mb-4">Social handles</h3>
+            <ul>
+              <li className="mb-2">
+                <div className="flex items-center gap-3">
+                  <a
+                    href="#"
+                    aria-label="Facebook"
+                    className="hover:text-gray-400"
+                  >
+                    <FaFacebook size={24} />
+                  </a>
+                  <span className="font-semibold text-black">Facebook</span>
+                </div>
+              </li>
+              <li className="mb-2">
+                <div className="flex items-center gap-3">
+                  <a
+                    href="#"
+                    aria-label="Instagram"
+                    className="hover:text-gray-400"
+                  >
+                    <FaInstagram size={24} />
+                  </a>
+                  <span className="font-semibold text-black">Instagram</span>
+                </div>
+              </li>
+              <li className="mb-2">
+                <div className="flex items-center gap-3">
+                  <a
+                    href="#"
+                    aria-label="Twitter"
+                    className="hover:text-gray-400"
+                  >
+                    <FaXTwitter size={24} />
+                  </a>
+                  <span className="font-semibold text-black">Twitter</span>
+                </div>
+              </li>
+              <li>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="#"
+                    aria-label="Instagram"
+                    className="hover:text-gray-400"
+                  >
+                    <FaLinkedin size={24} />
+                  </a>
+                  <span className="font-semibold text-black">LinkedIn</span>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="border-t border-gray-700 pt-4">

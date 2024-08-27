@@ -3,10 +3,9 @@ import React from "react";
 import Hero from "./hero";
 import BestSellers from "./bestsellers";
 import ProductPage from "./productpage";
-import Blog from "./blog";
 import Header from "./header";
 import Footer from "./footer";
-import Contact from "./contact";
+import NewsletterSection from "./newsletter";
 
 const Home: React.FC = () => {
   return (
@@ -15,9 +14,7 @@ const Home: React.FC = () => {
       <Hero />
       <BestSellers />
       <ProductPage />
-      {/* <CustomerReviews /> */}
-      <Blog />
-      <Contact />
+      <NewsletterSection />
       <Footer />
     </div>
   );

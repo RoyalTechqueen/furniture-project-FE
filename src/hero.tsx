@@ -3,29 +3,36 @@ import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
   return (
-    <section
-      id="home"
-      className="flex items-center justify-end min-h-screen bg-center bg-cover bg-no-repeat"
-      style={{
-        backgroundImage: "url(./hero.jpg)",
-      }}
-    >
-      <div className="flex flex-col items-center p-8 max-w-lg">
-        <h1 className="md:text-2xl text-xl font-bold text-black leading-light mb-4">
-          Create Your Dream Home With Our
-          <span className="block text-3xl font-extrabold md:text-5xl text-green-600">
-            Sophisticated Designs
-          </span>
+    <section className="relative flex flex-col lg:flex-row items-center justify-center lg:justify-between min-h-screen bg-green-100 p-8 overflow-visible">
+      <div className="flex flex-col items-center mt-16 lg:items-start text-center lg:text-left max-w-xl mx-auto lg:mx-0 z-10 mb-12 lg:mb-0">
+        <h1 className="text-4xl lg:text-5xl font-bold text-black leading-tight mb-4">
+          Elevate Your <span className="text-green-300">Living Space</span>
         </h1>
-        <p className="md:max-w-4xl text-md mb-6 text-black lg:mb-8 md:text-md lg:text-xl">
+        <p className="text-black text-md lg:text-lg mb-6">
           Discover stylish solutions for every room in your home. Browse our
           curated collection of furniture and decor to find the perfect pieces
           that reflect your personal style and enhance your living space.
         </p>
-        <div className="flex justify-center items-center">
-          <button className="px-8 py-2 md:py-3 bg-green-600 rounded-md hover:bg-green-800">
-            <Link to="/shop">View Products</Link>
-          </button>
+        <Link
+          to="/shop"
+          className="inline-block px-8 py-3 bg-green-600 text-black font-semibold rounded-full shadow-lg hover:bg-green-700 transition duration-300 ease-in-out"
+        >
+          View Products
+        </Link>
+      </div>
+
+      <div className="relative lg:flex lg:justify-end">
+        <div className="relative  shadow-lg">
+          <img
+            src="/living/liv1.jpg"
+            alt="Home decor"
+            className="w-full h-52 md:h-80 lg:w-[30rem] object-cover rounded-lg"
+          />
+          <img
+            src="/living/liv4.jpg"
+            alt="Overlapping decor"
+            className="absolute w-32 h-32 md:w-52 md:h-52 object-cover rounded-full border-4 border-green-100 shadow-lg -bottom-12 -left-12 mb-8 md:mb-0"
+          />
         </div>
       </div>
     </section>

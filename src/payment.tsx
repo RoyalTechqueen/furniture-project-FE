@@ -19,14 +19,17 @@ const Payment = () => {
   const total = cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+  // Import clearCart from the store
+  const clearCheckout = useCartStore((state) => state.clearCheckout);
+
   const handlePayment = () => {
-    // Simulate a payment process
     setShowModal(true);
   };
 
   const closeModal = () => {
     setShowModal(false);
     navigate("/");
+    clearCheckout();
   };
 
   return (

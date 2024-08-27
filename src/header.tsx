@@ -34,14 +34,13 @@ const Header: React.FC = () => {
     >
       <div className="mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
         <div className="flex items-center">
-          <img src="/logo2.png" alt="logo" className="h-16 rounded-xl" />
+          <img src="/logo2.png" alt="logo" className="h-20 rounded-xl" />
         </div>
         <nav className="hidden sm:flex space-x-8 items-center text-xl">
-          <a href="#home">Home</a>
+          <Link to="/">Home</Link>
           <Link to="/shop">Shop</Link>
           <Link to="/about">About</Link>
-          <a href="#blog">Blog Post</a>
-          <a href="#contact">Contact</a>
+          <Link to="/contact">Contact</Link>
         </nav>
         <div className="flex items-center space-x-5">
           <form className="max-w-md mx-auto">
@@ -125,12 +124,10 @@ const Header: React.FC = () => {
             About
           </Link>
           <a
-            href="#blog"
+            href="#"
             className="text-lg font-medium"
             onClick={() => setShowMenu(false)}
-          >
-            Blog Post
-          </a>
+          ></a>
           <a
             href="#contact"
             className="text-lg font-medium"

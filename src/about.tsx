@@ -17,7 +17,7 @@ const AboutPage: React.FC = () => {
 
   return (
     <div className="container mx-auto bg-green-50 min-h-screen">
-      <header className="w-full z-10 transition-colors duration-300 bg-white">
+      <header className="w-full z-10 bg-white">
         <div className="mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
           <div className="flex items-center">
             <img src="/logo2.png" alt="logo" className="h-16 rounded-xl" />

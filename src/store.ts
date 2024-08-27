@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { toast } from "react-toastify";
 
 interface Furniture {
   id: number;
@@ -18,6 +19,7 @@ interface StoreState {
   addToCart: (furniture: Furniture) => void;
   removeFromCart: (id: number) => void;
   clearCart: () => void;
+  clearCheckout: () => void;
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
   getCartItemCount: () => number;
@@ -26,32 +28,40 @@ interface StoreState {
 const useCartStore = create<StoreState>((set, get) => ({
   items: [],
   cart: [],
-  addToCart: (item) =>
-    set((state) => {
-      const existingItem = state.cart.find((cart) => cart.id === item.id);
-
-      if (existingItem) {
-        return {
-          cart: state.cart.map((cart) =>
-            cart.id === item.id
-              ? { ...cart, quantity: cart.quantity + 1 }
-              : cart
-          ),
-        };
-      } else {
-        return {
-          cart: [...state.cart, { ...item, quantity: 1 }],
-        };
-      }
-    }),
-  removeFromCart: (id: number) =>
+  addToCart: (item) => {
+    const existingItem = get().cart.find((cart) => cart.id === item.id);
+    if (existingItem) {
+      set((state) => ({
+        cart: state.cart.map((cart) =>
+          cart.id === item.id ? { ...cart, quantity: cart.quantity + 1 } : cart
+        ),
+      }));
+      toast.success("Item already in cart!");
+    } else {
+      set((state) => ({
+        cart: [...state.cart, { ...item, quantity: 1 }],
+      }));
+      toast.success("Item Added to cart!");
+    }
+  },
+  removeFromCart: (id: number) => {
     set((state) => ({
       cart: state.cart.filter((item) => item.id !== id),
-    })),
-  clearCart: () =>
+    }));
+    toast.info("Item removed from cart.");
+  },
+  clearCart: () => {
     set(() => ({
       cart: [],
-    })),
+    }));
+    toast.info("Cart cleared.");
+  },
+  clearCheckout: () => {
+    set(() => ({
+      cart: [],
+    }));
+    toast.info("Order placed.");
+  },
   increaseQuantity: (id: number) =>
     set((state) => ({
       cart: state.cart.map((item) =>
