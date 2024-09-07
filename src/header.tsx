@@ -32,7 +32,7 @@ const Header: React.FC = () => {
         isScrolled ? "bg-green-50" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-screen-2xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
+      <div className="mx-auto flex max-w-screen-8xl px-4 py-6 sm:px-6 justify-between items-center space-x-5">
         <div className="flex items-center">
           <img src="/logo2.png" alt="logo" className="h-20 rounded-xl" />
         </div>
@@ -42,27 +42,39 @@ const Header: React.FC = () => {
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
         </nav>
-        <div className="flex items-center space-x-5">
-          <form className="max-w-md mx-auto">
-            <div className="relative">
-              <div className="absolute inset-y-0 start-0 flex items-center p-3 md:p-5 pointer-events-none">
-                <FaSearch className="w-4 h-4" />
-              </div>
-              <input
-                type="search"
-                id="default-search"
-                className="block w-full px-12 py-2 md:py-3 text-sm text-black border border-gray-300 rounded-3xl bg-gray-50 focus:outline-none"
-                placeholder="Search Products"
-                required
-              />
-              <button
-                type="submit"
-                className="text-white absolute end-2 bottom-2 md:end-2.5 md:bottom-2 bg-green-600 hover:bg-green-800 focus:outline-none font-medium rounded-xl text-sm px-3 md:px-5 md:py-1 py-1/2"
-              >
-                Search
-              </button>
+        <form className="max-w-md mx-auto">
+          <div className="relative">
+            <div className="absolute inset-y-0 start-0 flex items-center p-3 md:p-5 pointer-events-none">
+              <FaSearch className="w-4 h-4" />
             </div>
-          </form>
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full px-12 py-2 md:py-3 text-sm text-black border border-gray-300 rounded-3xl bg-gray-50 focus:outline-none"
+              placeholder="Search Products"
+              required
+            />
+            <button
+              type="submit"
+              className="text-white absolute end-2 bottom-2 md:end-2.5 md:bottom-2 bg-green-600 hover:bg-green-800 focus:outline-none font-medium rounded-xl text-sm px-3 md:px-5 md:py-1 py-1/2"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+        <div className="flex items-center space-x-5">
+          <div className="hidden sm:flex sm:gap-5 items-center">
+            <Link to="/login">
+              <span className="w-full px-4 py-3 rounded-full bg-gray-200 bg-gray-200 border hover:bg-gray-300">
+                Login
+              </span>
+            </Link>
+            <Link to="/signup">
+              <span className="rounded-full bg-green-600 px-4 py-3 text-white hover:bg-green-800">
+                Get Started
+              </span>
+            </Link>
+          </div>
           <div className="flex items-center relative">
             <Link to="/cart">
               <IoCartOutline className="w-8 h-8 text-green-600" />
@@ -136,6 +148,17 @@ const Header: React.FC = () => {
             Contact
           </a>
         </nav>
+        <Link to="/login">
+          <span className=" block w-full rounded-full px-4 py-3 text-center bg-gray-200 hover:bg-gray-300 border ">
+            Login
+          </span>
+        </Link>
+
+        <Link to="/signup">
+          <span className="mt-4 block w-full px-4 py-3 text-center rounded-full bg-green-600 text-white hover:bg-green-800">
+            Get Started
+          </span>
+        </Link>
       </div>
     </header>
   );

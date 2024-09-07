@@ -1,0 +1,19 @@
+.border-green-500 {
+  border-color: #48bb78; /* Adjust to your green color */
+}
+
+.hover\:border-r-4:hover {
+  border-right-width: 4px;
+}
+
+.hover\:border-t-white:hover {
+  border-top-color: white;
+}
+
+.hover\:border-b-white:hover {
+  border-bottom-color: white;
+}
+
+.hover\:border-l-white:hover {
+  border-left-color: white;
+}

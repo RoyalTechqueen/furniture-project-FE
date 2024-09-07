@@ -1,0 +1,131 @@
+import React, { useState, useEffect } from "react";
+import { useCartStore } from "../store";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Header from "../header";
+import Footer from "../footer";
+import axios from "axios";
+
+interface Image {
+  id: number;
+  webformatURL: string;
+  tags: string;
+  user: string;
+}
+
+const Shop: React.FC = () => {
+  const addToCart = useCartStore((state) => state.addToCart);
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const itemsPerPage = 12;
+
+  const [images, setImages] = useState<Image[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = images.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(images.length / itemsPerPage);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(
+          "https://pixabay.com/api/?key=45782644-cc25357d97d2cf1af90b3f230&q=bedroom&image_type=photo&pretty=true"
+        );
+        setImages(response.data.hits); // Access hits directly from response.data
+      } catch (error) {
+        setError("Failed to fetch images.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
+  // Format price with commas
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "NGN",
+    }).format(price);
+  };
+
+  return (
+    <div className="bg-green-50 min-h-screen">
+      <Header />
+      <div className="p-4">
+        <h1 className="text-2xl md:text-5xl font-bold mt-24 text-center">
+          Our Products
+        </h1>
+        <div className="flex items-center gap-4 mb-4">
+          <button className="flex items-center text-gray-700">
+            <Link to="/">
+              <FaArrowLeft className="mr-2" />
+            </Link>
+            <span>Back</span>
+          </button>
+        </div>
+        {loading && <p>Loading images...</p>}
+        {error && <p>{error}</p>}
+        <div className="grid grid-cols-2 max-w-8xl mx-auto md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {currentItems.map((image) => (
+            <div
+              key={image.id}
+              className="flex flex-col sm:flex-row md:flex-col items-center bg-white shadow-md rounded-lg p-4"
+            >
+              <img
+                src={image.webformatURL}
+                alt={image.tags}
+                className="product-image w-full h-48 object-cover rounded-lg mb-4"
+              />
+              <div className="flex-grow sm:pl-4 md:pl-0">
+                <h2 className="product-title text-xl font-bold">
+                  {image.tags.split(",")[0]}{" "}
+                  {/* Displaying the first tag as title */}
+                </h2>
+                <p className="product-description text-gray-600 my-2">
+                  {image.user} {/* Displaying the username as description */}
+                </p>
+              </div>
+              <div className="flex items-center justify-between w-full">
+                {/* Placeholder price for now */}
+                <p className="product-price font-bold text-lg mr-4">
+                  {formatPrice(0)}
+                </p>
+                <button
+                  onClick={() => addToCart(image)}
+                  className="add-to-cart-button bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center mt-4 mb-8">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => paginate(index + 1)}
+              className={`px-4 py-2 mx-1 rounded ${
+                currentPage === index + 1
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+export default Shop;

@@ -1,9 +1,9 @@
-import React from "react";
-import { useCartStore } from "./store";
+import React, { useState } from "react";
+import { useCartStore } from "../store";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Delivery from "./delivery";
-import Header from "./header";
+import Header from "../header";
 
 const Checkout: React.FC = () => {
   const formatPrice = (price: number) => {
@@ -18,8 +18,29 @@ const Checkout: React.FC = () => {
   const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const navigate = useNavigate();
 
+  // State to store customer name
+  const [name, setName] = useState("");
+
+  // Function to handle WhatsApp Checkout
+  const handleCheckout = () => {
+    // Generate item list for WhatsApp message
+    const itemList = cart
+      .map(
+        (item) =>
+          `- ${item.title}: ${item.quantity} x ${formatPrice(item.price)}`
+      )
+      .join("\n");
+    const message = `Hello, my name is ${name}. I just placed an order for the following items:\n${itemList}\nTotal: ${formatPrice(
+      total
+    )}`;
+    const encodedMessage = encodeURIComponent(message);
+
+    // Replace <your_phone_number> with the actual phone number
+    window.open(`https://wa.me/2348055284718?text=${encodedMessage}`, "_blank");
+  };
+
   return (
-    <div className="container mx-auto bg-green-50 min-h-screen">
+    <div className="bg-green-50 min-h-screen">
       <Header />
       <div className="p-4">
         <div className="flex flex-row mt-24 items-center gap-2 mb-4">
@@ -31,7 +52,7 @@ const Checkout: React.FC = () => {
             <Delivery />
           </div>
           <div>
-            <div className=" space-y-4 p-6 mb-4">
+            <div className="space-y-4 p-6 mb-4">
               <div className="border border-2 shadow-md p-6">
                 <h2 className="text-xl font-bold mb-4">Order Summary</h2>
                 <div className="flex justify-between mb-2">
@@ -64,6 +85,23 @@ const Checkout: React.FC = () => {
                   </div>
                 ))}
               </div>
+              {/* New Input for Customer Name */}
+              <div className="mt-4">
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              {/* WhatsApp Button */}
+              <button
+                onClick={handleCheckout}
+                className="mt-4 w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
+              >
+                Proceed to WhatsApp
+              </button>
             </div>
           </div>
         </div>

@@ -1,16 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./home";
-import Cart from "./cart";
-import Contact from "./contact";
-import Checkout from "./checkout";
+import Cart from "./components/cart";
+import Contact from "./components/contact";
+import Checkout from "./components/checkout";
 import AppLayout from "./AppLayout";
-import Shop from "./shop";
+import Shop from "./components/shop";
 import AboutMe from "./about";
-import BlogPage from "./blogpage";
-import Payment from "./payment";
+import BlogPage from "./components/blogpage";
+import Payment from "./components/payment";
+import Login from "./components/login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./dashboard/dashboard";
+import SignUp from "./components/signup";
 
 const App: React.FC = () => {
   return (
@@ -24,6 +27,9 @@ const App: React.FC = () => {
           <Route path="about" element={<AboutMe />} />
           <Route path="contact" element={<Contact />} />
           <Route path="blogpage" element={<BlogPage />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="payment" element={<Payment />} />
         </Route>
       </Routes>

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { Furniture } from "./furnituredata";
-import { useCartStore } from "./store";
+import { Furniture } from "../furnituredata";
+import { useCartStore } from "../store";
 
 interface FurnitureCardProps {
   furniture: Furniture;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "./modal";
-import { furnitures, Furniture } from "./furnituredata";
+import { furnitures, Furniture } from "../furnituredata";
 import FurnitureCard from "./furniturecard";
 
 const ProductPage = () => {
@@ -44,7 +44,6 @@ const ProductPage = () => {
 
   return (
     <div className="min-h-screen ">
-      {/* Dropdown for selecting category */}
       <div className="mb-4 flex flex-col justify-between  items-center text-center flex-wrap">
         <h1 className="text-3xl font-bold mb-4 text-center mt-4">
           Our Products
@@ -67,7 +66,7 @@ const ProductPage = () => {
         </div>
       </div>
       {/* Render filtered list */}
-      <div className="grid grid-cols-1 max-w-6xl mx-auto md:grid-cols-2  lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 max-w-screen-8xl mx-auto md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6  gap-6">
         {currentItems.map((furniture) => (
           <FurnitureCard
             key={furniture.id}
@@ -82,10 +81,10 @@ const ProductPage = () => {
           <button
             key={index + 1}
             onClick={() => paginate(index + 1)}
-            className={`px-4 py-2 mx-1 rounded ${
+            className={`mx-1 ${
               currentPage === index + 1
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-700"
+                ? "text-green-700 text-green-900"
+                : "text-black text-gray-700"
             }`}
           >
             {index + 1}

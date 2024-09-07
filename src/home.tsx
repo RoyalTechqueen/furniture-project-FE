@@ -1,11 +1,11 @@
 import "./index.css";
 import React from "react";
 import Hero from "./hero";
-import BestSellers from "./bestsellers";
-import ProductPage from "./productpage";
+import BestSellers from "./components/bestsellers";
+import ProductPage from "./components/productpage";
 import Header from "./header";
 import Footer from "./footer";
-import NewsletterSection from "./newsletter";
+import NewsletterSection from "./components/newsletter";
 
 const Home: React.FC = () => {
   return (

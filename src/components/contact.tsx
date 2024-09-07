@@ -7,9 +7,9 @@ import { IoMdClose } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
-import { useCartStore } from "./store";
+import { useCartStore } from "../store";
 import { IoLocationOutline } from "react-icons/io5";
-import Footer from "./footer";
+import Footer from "../footer";
 
 const Contact: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);

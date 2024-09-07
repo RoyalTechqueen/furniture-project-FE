@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaStar } from "react-icons/fa";
-import { useCartStore } from "./store"; // Import the store
+import { useCartStore } from "../store";
 
 interface Product {
   id: number; // Add id field to Product interface
@@ -93,7 +93,7 @@ const BestSellersSection: React.FC = () => {
 
   return (
     <section className="py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-8">Best Sellers</h2>
         <div className="relative">
           <Slider {...settings}>

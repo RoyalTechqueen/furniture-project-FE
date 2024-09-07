@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { useCartStore } from "./store";
-import Header from "./header";
+import { useCartStore } from "../store";
+import Header from "../header";
 
 const Payment = () => {
   const [showModal, setShowModal] = useState(false);
