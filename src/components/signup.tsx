@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
 
-const Login: React.FC = () => {
+const SignUp: React.FC = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -15,10 +15,8 @@ const Login: React.FC = () => {
     event.preventDefault();
     setLoading(true);
 
-    // Simulate an async login process
     setTimeout(() => {
       setLoading(false);
-      // Redirect to the dashboard after login
       navigate("/dashboard");
     }, 2000);
   };
@@ -42,6 +40,19 @@ const Login: React.FC = () => {
         </div>
 
         <div className="grid gap-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium">
+              FullName
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="name"
+              required
+              placeholder="John Doe"
+              className="w-full mt-1 px-4 py-2 h-10 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium">
               Email address
@@ -86,7 +97,7 @@ const Login: React.FC = () => {
             {loading ? (
               <>
                 <FaSpinner className="animate-spin mr-2" />
-                Signing Up in...
+                Signing Up ...
               </>
             ) : (
               "Sign Up"
@@ -106,4 +117,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default SignUp;

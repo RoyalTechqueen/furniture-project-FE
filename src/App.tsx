@@ -12,7 +12,7 @@ import Payment from "./components/payment";
 import Login from "./components/login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Dashboard from "./dashboard/dashboard";
+import Dashboard from "./dashboard"; // Ensure correct import for the dashboard
 import SignUp from "./components/signup";
 
 const App: React.FC = () => {
@@ -29,7 +29,8 @@ const App: React.FC = () => {
           <Route path="blogpage" element={<BlogPage />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard/*" element={<Dashboard />} />{" "}
+          {/* Note the /* for nested routes */}
           <Route path="payment" element={<Payment />} />
         </Route>
       </Routes>
